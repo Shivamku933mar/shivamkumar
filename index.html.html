@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Work From Home</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  /* Light mode styles */
+  body.light-mode {
+    background-color: #f5f5f5;
+    color: #222;
+  }
+  /* Dark mode styles */
+  body.dark-mode {
+    background-color: #121212;
+    color: #f5f5f5;
+  }
+  header {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: bold;
+  }
+  #admin-name {
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 4px;
+    color: #ffe;
+    transition: opacity 0.3s ease;
+  }
+  nav {
+    background-color: #0056b3;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+  }
+  nav ul li {
+    margin: 0;
+  }
+  nav ul li a {
+    display: block;
+    padding: 14px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  nav ul li a:hover, nav ul li a.active {
+    background-color: #003d80;
+  }
+  /* Dark mode nav */
+  body.dark-mode header {
+    background-color: #1e88e5;
+    color: #eee;
+  }
+  body.dark-mode nav {
+    background-color: #0d47a1;
+  }
+  body.dark-mode nav ul li a:hover, body.dark-mode nav ul li a.active {
+    background-color: #054a91;
+  }
+
+  .dark-toggle {
+    cursor: pointer;
+    background: #eee;
+    border-radius: 12px;
+    width: 50px;
+    height: 26px;
+    position: relative;
+  }
+  .dark-toggle .toggle-circle {
+    background: #007bff;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s;
+  }
+  .dark-mode .dark-toggle {
+    background: #333;
+  }
+  .dark-mode .dark-toggle .toggle-circle {
+    left: 26px;
+    background: #90caf9;
+  }
+
+  main {
+    padding: 20px;
+  }
+  /* Home page image full screen */
+  #home-content img {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  /* Registration form styles */
+  #registration form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  body.dark-mode #registration form {
+    background: #333;
+  }
+  #registration label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+  }
+  #registration input, #registration textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+  }
+  body.dark-mode #registration input, 
+  body.dark-mode #registration textarea {
+    background: #555;
+    border-color: #777;
+    color: #eee;
+  }
+  #registration button {
+    margin-top: 16px;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  #registration button:hover {
+    background-color: #0056b3;
+  }
+  /* Help section */
+  #help, #about-us {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  #help {
+    text-align: center;
+    margin-top: 40px;
+    font-weight: bold;
+  }
+  #about-us p {
+    margin-bottom: 1.2em;
+    line-height: 1.4em;
+  }
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+  }
+  body.dark-mode footer {
+    background-color: #1a237e;
+  }
+  footer a {
+    color: #ffc107;
+    text-decoration: none;
+    margin: 0 8px;
+    font-weight: bold;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Dark mode toggle container right aligned */
+  .dark-toggle-container {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+  }
+
+</style>
+</head>
+<body class="light-mode">
+
+<header>
+  <h1>Work From Home</h1>
+  <div id="admin-name">Admin: Shivam</div>
+  <div class="dark-toggle-container">
+    <div class="dark-toggle" id="darkToggle" title="Toggle Dark/Light Mode">
+      <div class="toggle-circle"></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#" class="active" id="nav-home">Home</a></li>
+    <li><a href="#" id="nav-registration">Registration</a></li>
+    <li><a href="#" id="nav-help">Help</a></li>
+    <li><a href="#" id="nav-aboutus">About Us</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section id="home-content">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1470&q=80" alt="Work from Home Image" />
+  </section>
+
+  <section id="registration" style="display:none;">
+    <form id="registrationForm">
+      <h2>Registration Form</h2>
+      <label for="name">Name *</label>
+      <input type="text" id="name" name="name" required />
+      
+      <label for="state">State *</label>
+      <input type="text" id="state" name="state" required />
+      
+      <label for="district">District *</label>
+      <input type="text" id="district" name="district" required />
+      
+      <label for="village">Village *</label>
+      <input type="text" id="village" name="village" required />
+      
+      <label for="pincode">Pincode *</label>
+      <input type="text" id="pincode" name="pincode" required pattern="\d{6}" title="6 digit pincode" />
+      
+      <label for="post">Post *</label>
+      <input type="text" id="post" name="post" required />
+      
+      <label for="contact">Contact *</label>
+      <input type="tel" id="contact" name="contact" required pattern="[0-9]{10}" title="10 digit contact number" />
+      
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" required />
+      
+      <button type="submit">Register</button>
+    </form>
+  </section>
+
+  <section id="help" style="display:none;">
+    <h2>Help</h2>
+    <p>Contact us at: <a href="tel:6397416678">6397416678</a> / <a href="tel:9368177718">9368177718</a></p>
+  </section>
+  
+  <section id="about-us" style="display:none;">
+    <h2>About Us</h2>
+    <p><strong>Why Work for Someone Else’s Dreams? Create Your Own Story of Success!</strong><br/>
+    “क्यों काम करें किसी और के सपनों के लिए, जब बना सकते हैं अपना सफल भविष्य?”</p>
+    
+    <hr/>
+    
+    <p><strong>Now You Can Work From Anywhere… Even From Your Home!</strong><br/>
+    अब आप कहीं से भी काम कर सकते हैं… यहां तक कि अपने घर से भी!</p>
+    
+    <hr/>
+    
+    <p><strong>What You Get / आपको क्या मिलेगा:</strong></p>
+    <ul>
+      <li>Zero Investment – No Risk Business<br/>बिना निवेश – बिना जोखिम का व्यापार</li>
+      <li>Work from Mobile – Anytime, Anywhere<br/>मोबाइल से काम – जब चाहें, जहां चाहें</li>
+      <li>No Experience Required – Learn and Earn<br/>अनुभव की ज़रूरत नहीं – सीखिए और कमाइए</li>
+      <li>Professional Training & Lifetime Support<br/>प्रोफेशनल ट्रेनिंग और आजीवन सहायता</li>
+      <li>Weekly Payouts + Bonuses + Rewards<br/>साप्ताहिक इनकम + बोनस + इनाम</li>
+      <li>Personal Development & Recognition<br/>व्यक्तित्व विकास और पहचान</li>
+    </ul>
+    
+    <hr/>
+    
+    <p><strong>Who Can Join / कौन जुड़ सकता है?</strong></p>
+    <p>Students | Housewives | Working Professionals<br/>
+    Retired People | Business Minded Individuals<br/>
+    Anyone who wants to earn & grow in life<br/>
+    बस आपके पास होनी चाहिए – सीखने की इच्छा और कुछ कर दिखाने का जज़्बा!</p>
+    
+    <hr/>
+    
+    <p><strong>This is Not Just a Job… It’s a Mission to Build Lives!</strong><br/>
+    ये सिर्फ नौकरी नहीं… ये एक ज़िंदगी बनाने का मिशन है!</p>
+    
+    <hr/>
+    
+    <p><strong>Start Today – Take the First Step Towards Your Dreams</strong><br/>
+    आज ही शुरुआत करें – अपने सपनों की ओर पहला कदम बढ़ाएं</p>
+    
+    <p><strong>For More Details / अधिक जानकारी के लिए संपर्क करें:</strong><br/>
+    Shivam – 6397416678 | 9368177718<br/>
+    (Available on WhatsApp)</p>
+  </section>
+</main>
+
+<footer>
+  For Help: <a href="tel:6397416678">6397416678</a> / <a href="tel:9368177718">9368177718</a>  
+  | Follow us: 
+  <a href="https://www.facebook.com/share/15ZvBPMCbP/" target="_blank" rel="noopener">Facebook</a> | 
+  <a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a> | 
+  <a href="https://www.instagram.com/shibbu_a93?igsh=MWxmYWxqeGM3bGN4Zw==" target="_blank" rel="noopener">Instagram</a>
+</footer>
+
+<script>
+  // Dark Mode toggle logic
+  const body = document.body;
+  const darkToggle = document.getElementById('darkToggle');
+  darkToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    body.classList.toggle('light-mode');
+  });
+
+  // Navigation menu show/hide sections
+  const navHome = document.getElementById('nav-home');
+  const navRegistration = document.getElementById('nav-registration');
+  const navHelp = document.getElementById('nav-help');
+  const navAboutUs = document.getElementById('nav-aboutus');
+  const adminNameDiv = document.getElementById('admin-name');
+
+  function setActiveMenu(activeLink) {
+    [navHome, navRegistration, navHelp, navAboutUs].forEach(link => {
+      link.classList.remove('active');
+    });
+    activeLink.classList.add('active');
+  }
+
+  function showAdminName(show) {
+    adminNameDiv.style.display = show ? 'block' : 'none';
+  }
+
+  navHome.addEventListener('click', e => {
+    e.preventDefault();
+    setActiveMenu(navHome);
+    document.getElementById('home-content').style.display = 'block';
+    document.getElementById('registration').style.display = 'none';
+    document.getElementById('help').style.display = 'none';
+    document.getElementById('about-us').style.display = 'none';
+    showAdminName(true);
+  });
+
+  navRegistration.addEventListener('click', e => {
+    e.preventDefault();
+    setActiveMenu(navRegistration);
+    document.getElementById('home-content').style.display = 'none';
+    document.getElementById('registration').style.display = 'block';
+    document.getElementById('help').style.display = 'none';
+    document.getElementById('about-us').style.display = 'none';
+    showAdminName(false);
+  });
+
+  navHelp.addEventListener('click', e => {
+    e.preventDefault();
+    setActiveMenu(navHelp);
+    document.getElementById('home-content').style.display = 'none';
+    document.getElementById('registration').style.display = 'none';
+    document.getElementById('help').style.display = 'block';
+    document.getElementById('about-us').style.display = 'none';
+    showAdminName(false);
+  });
+
+  navAboutUs.addEventListener('click', e => {
+    e.preventDefault();
+    setActiveMenu(navAboutUs);
+    document.getElementById('home-content').style.display = 'none';
+    document.getElementById('registration').style.display = 'none';
+    document.getElementById('help').style.display = 'none';
+    document.getElementById('about-us').style.display = 'block';
+    showAdminName(false);
+  });
+
+  // Initially show admin name because Home is default active
+  showAdminName(true);
+
+  // Registration form submit
+  document.getElementById('registrationForm').addEventListener('submit', function(event){
+    event.preventDefault();
+
+    // Collect form data
+    const formData = {
+      name: this.name.value.trim(),
+      state: this.state.value.trim(),
+      district: this.district.value.trim(),
+      village: this.village.value.trim(),
+      pincode: this.pincode.value.trim(),
+      post: this.post.value.trim(),
+      contact: this.contact.value.trim(),
+      email: this.email.value.trim()
+    };
+
+    // WhatsApp message preparation
+    const message = `New Registration from Work From Home Website:%0A` +
+      `Name: ${formData.name}%0A` +
+      `State: ${formData.state}%0A` +
+      `District: ${formData.district}%0A` +
+      `Village: ${formData.village}%0A` +
+      `Pincode: ${formData.pincode}%0A` +
+      `Post: ${formData.post}%0A` +
+      `Contact: ${formData.contact}%0A` +
+      `Email: ${formData.email}`;
+
+    const whatsappNumber = "6397416678"; // Admin WhatsApp number without '+' or '00'
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    // Open WhatsApp link in new tab to send message
+    window.open(whatsappUrl, '_blank');
+
+    // Optionally reset form
+    this.reset();
+    alert('Registration submitted! You will be redirected to WhatsApp to confirm your registration.');
+  });
+
+</script>
+
+</body>
+</html>
